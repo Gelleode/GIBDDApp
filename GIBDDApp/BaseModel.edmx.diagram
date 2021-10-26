@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1135f48565f842a0812da7d6ed2b8a80" Name="Diagram1">
+        <EntityTypeShape EntityType="GIBDDModel.Auth" Width="1.5" PointX="13" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDDModel.Car" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDDModel.CarModel" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDDModel.CarSpecification" Width="1.5" PointX="7.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDDModel.Category" Width="1.5" PointX="6" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDDModel.CategoryOfLicense" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDDModel.Contact" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDDModel.DriverLicense" Width="1.5" PointX="6" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDDModel.Drivers" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDDModel.Job" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDDModel.Manufacter" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDDModel.Roles" Width="1.5" PointX="10.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDDModel.Status" Width="1.5" PointX="3.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDDModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDDModel.TypeOfDrive" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDDModel.TypeOfDriveOfCar" Width="1.5" PointX="9.75" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="GIBDDModel.FK_Auth_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="GIBDDModel.FK_Car_Drivers" ManuallyRouted="false" />
+        <AssociationConnector Association="GIBDDModel.FK_CarModel_Car" ManuallyRouted="false" />
+        <AssociationConnector Association="GIBDDModel.FK_CarModel_Manufacter1" ManuallyRouted="false" />
+        <AssociationConnector Association="GIBDDModel.FK_CarSpecification_CarModel" ManuallyRouted="false" />
+        <AssociationConnector Association="GIBDDModel.FK_TypeOfDriveOfCar_CarSpecification" ManuallyRouted="false" />
+        <AssociationConnector Association="GIBDDModel.FK_CategoryOfLicense_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="GIBDDModel.FK_CategoryOfLicense_DriverLicense" ManuallyRouted="false" />
+        <AssociationConnector Association="GIBDDModel.FK_Contact_Drivers" ManuallyRouted="false" />
+        <AssociationConnector Association="GIBDDModel.FK_DriverLicense_Drivers" ManuallyRouted="false" />
+        <AssociationConnector Association="GIBDDModel.FK_DriverLicense_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="GIBDDModel.FK_Job_Drivers" ManuallyRouted="false" />
+        <AssociationConnector Association="GIBDDModel.FK_TypeOfDriveOfCar_TypeOfDrive" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,978 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище GIBDDModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Auth">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverGUID" Type="int" Nullable="false" />
+          <Property Name="VIN" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarModel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarId" Type="int" Nullable="false" />
+          <Property Name="ManufacterId" Type="int" Nullable="false" />
+          <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarSpecification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModelId" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Weight" Type="int" Nullable="false" />
+          <Property Name="Color" Type="int" Nullable="false" />
+          <Property Name="EngineType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Categories" Type="nvarchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoryOfLicense">
+          <Key>
+            <PropertyRef Name="LicenseId" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="LicenseId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="Nothing" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverGUID" Type="int" Nullable="false" />
+          <Property Name="AddressStreet" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AdressCity" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AdressLifeStreet" Type="varchar" MaxLength="100" />
+          <Property Name="AdressLifeCity" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DriverLicense">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverGUID" Type="int" Nullable="false" />
+          <Property Name="LicenseDate" Type="date" Nullable="false" />
+          <Property Name="ExpireDate" Type="date" Nullable="false" />
+          <Property Name="LicenseSeries" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="LicenseNumber" Type="int" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Drivers">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Middlename" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PassportSerial" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="PassportNumber" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="Photo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="IsDelete" Type="nvarchar" MaxLength="7" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverGUID" Type="int" Nullable="false" />
+          <Property Name="Company" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="JobName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Manufacter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeOfDrive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriveName" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOfDriveOfCar">
+          <Key>
+            <PropertyRef Name="CarSpecId" />
+            <PropertyRef Name="TypeOfDriveId" />
+          </Key>
+          <Property Name="CarSpecId" Type="int" Nullable="false" />
+          <Property Name="TypeOfDriveId" Type="int" Nullable="false" />
+          <Property Name="Nothing" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Auth_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Auth" Type="Self.Auth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_Drivers">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="DriverGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarModel_Car">
+          <End Role="Car" Type="Self.Car" Multiplicity="1" />
+          <End Role="CarModel" Type="Self.CarModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarModel">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarModel_Manufacter1">
+          <End Role="Manufacter" Type="Self.Manufacter" Multiplicity="1" />
+          <End Role="CarModel" Type="Self.CarModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarModel">
+              <PropertyRef Name="ManufacterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarSpecification_CarModel">
+          <End Role="CarModel" Type="Self.CarModel" Multiplicity="1" />
+          <End Role="CarSpecification" Type="Self.CarSpecification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarModel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarSpecification">
+              <PropertyRef Name="ModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryOfLicense_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="CategoryOfLicense" Type="Self.CategoryOfLicense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryOfLicense">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryOfLicense_DriverLicense">
+          <End Role="DriverLicense" Type="Self.DriverLicense" Multiplicity="1" />
+          <End Role="CategoryOfLicense" Type="Self.CategoryOfLicense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DriverLicense">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryOfLicense">
+              <PropertyRef Name="LicenseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_Drivers">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="DriverGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DriverLicense_Drivers">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="DriverLicense" Type="Self.DriverLicense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="DriverLicense">
+              <PropertyRef Name="DriverGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DriverLicense_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="DriverLicense" Type="Self.DriverLicense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DriverLicense">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_Drivers">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="DriverGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfDriveOfCar_CarSpecification">
+          <End Role="CarSpecification" Type="Self.CarSpecification" Multiplicity="1" />
+          <End Role="TypeOfDriveOfCar" Type="Self.TypeOfDriveOfCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarSpecification">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TypeOfDriveOfCar">
+              <PropertyRef Name="CarSpecId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfDriveOfCar_TypeOfDrive">
+          <End Role="TypeOfDrive" Type="Self.TypeOfDrive" Multiplicity="1" />
+          <End Role="TypeOfDriveOfCar" Type="Self.TypeOfDriveOfCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfDrive">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TypeOfDriveOfCar">
+              <PropertyRef Name="TypeOfDriveId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище GIBDDModelContainer">
+          <EntitySet Name="Auth" EntityType="Self.Auth" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarModel" EntityType="Self.CarModel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarSpecification" EntityType="Self.CarSpecification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryOfLicense" EntityType="Self.CategoryOfLicense" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DriverLicense" EntityType="Self.DriverLicense" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drivers" EntityType="Self.Drivers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manufacter" EntityType="Self.Manufacter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfDrive" EntityType="Self.TypeOfDrive" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfDriveOfCar" EntityType="Self.TypeOfDriveOfCar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Auth_Roles" Association="Self.FK_Auth_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Auth" EntitySet="Auth" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_Drivers" Association="Self.FK_Car_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarModel_Car" Association="Self.FK_CarModel_Car">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="CarModel" EntitySet="CarModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarModel_Manufacter1" Association="Self.FK_CarModel_Manufacter1">
+            <End Role="Manufacter" EntitySet="Manufacter" />
+            <End Role="CarModel" EntitySet="CarModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarSpecification_CarModel" Association="Self.FK_CarSpecification_CarModel">
+            <End Role="CarModel" EntitySet="CarModel" />
+            <End Role="CarSpecification" EntitySet="CarSpecification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryOfLicense_Category" Association="Self.FK_CategoryOfLicense_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="CategoryOfLicense" EntitySet="CategoryOfLicense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryOfLicense_DriverLicense" Association="Self.FK_CategoryOfLicense_DriverLicense">
+            <End Role="DriverLicense" EntitySet="DriverLicense" />
+            <End Role="CategoryOfLicense" EntitySet="CategoryOfLicense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_Drivers" Association="Self.FK_Contact_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DriverLicense_Drivers" Association="Self.FK_DriverLicense_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="DriverLicense" EntitySet="DriverLicense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DriverLicense_Status" Association="Self.FK_DriverLicense_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="DriverLicense" EntitySet="DriverLicense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_Drivers" Association="Self.FK_Job_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfDriveOfCar_CarSpecification" Association="Self.FK_TypeOfDriveOfCar_CarSpecification">
+            <End Role="CarSpecification" EntitySet="CarSpecification" />
+            <End Role="TypeOfDriveOfCar" EntitySet="TypeOfDriveOfCar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfDriveOfCar_TypeOfDrive" Association="Self.FK_TypeOfDriveOfCar_TypeOfDrive">
+            <End Role="TypeOfDrive" EntitySet="TypeOfDrive" />
+            <End Role="TypeOfDriveOfCar" EntitySet="TypeOfDriveOfCar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GIBDDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Auth">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_Auth_Roles" FromRole="Auth" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverGUID" Type="Int32" Nullable="false" />
+          <Property Name="VIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Drivers" Relationship="Self.FK_Car_Drivers" FromRole="Car" ToRole="Drivers" />
+          <NavigationProperty Name="CarModel" Relationship="Self.FK_CarModel_Car" FromRole="Car" ToRole="CarModel" />
+        </EntityType>
+        <EntityType Name="CarModel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarId" Type="Int32" Nullable="false" />
+          <Property Name="ManufacterId" Type="Int32" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Car" Relationship="Self.FK_CarModel_Car" FromRole="CarModel" ToRole="Car" />
+          <NavigationProperty Name="Manufacter" Relationship="Self.FK_CarModel_Manufacter1" FromRole="CarModel" ToRole="Manufacter" />
+          <NavigationProperty Name="CarSpecification" Relationship="Self.FK_CarSpecification_CarModel" FromRole="CarModel" ToRole="CarSpecification" />
+        </EntityType>
+        <EntityType Name="CarSpecification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModelId" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Weight" Type="Int32" Nullable="false" />
+          <Property Name="Color" Type="Int32" Nullable="false" />
+          <Property Name="EngineType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CarModel" Relationship="Self.FK_CarSpecification_CarModel" FromRole="CarSpecification" ToRole="CarModel" />
+          <NavigationProperty Name="TypeOfDriveOfCar" Relationship="Self.FK_TypeOfDriveOfCar_CarSpecification" FromRole="CarSpecification" ToRole="TypeOfDriveOfCar" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Categories" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CategoryOfLicense" Relationship="Self.FK_CategoryOfLicense_Category" FromRole="Category" ToRole="CategoryOfLicense" />
+        </EntityType>
+        <EntityType Name="CategoryOfLicense">
+          <Key>
+            <PropertyRef Name="LicenseId" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="LicenseId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Nothing" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_CategoryOfLicense_Category" FromRole="CategoryOfLicense" ToRole="Category" />
+          <NavigationProperty Name="DriverLicense" Relationship="Self.FK_CategoryOfLicense_DriverLicense" FromRole="CategoryOfLicense" ToRole="DriverLicense" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverGUID" Type="Int32" Nullable="false" />
+          <Property Name="AddressStreet" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AdressCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AdressLifeStreet" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AdressLifeCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Drivers" Relationship="Self.FK_Contact_Drivers" FromRole="Contact" ToRole="Drivers" />
+        </EntityType>
+        <EntityType Name="DriverLicense">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverGUID" Type="Int32" Nullable="false" />
+          <Property Name="LicenseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ExpireDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LicenseSeries" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LicenseNumber" Type="Int32" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CategoryOfLicense" Relationship="Self.FK_CategoryOfLicense_DriverLicense" FromRole="DriverLicense" ToRole="CategoryOfLicense" />
+          <NavigationProperty Name="Drivers" Relationship="Self.FK_DriverLicense_Drivers" FromRole="DriverLicense" ToRole="Drivers" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_DriverLicense_Status" FromRole="DriverLicense" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Drivers">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Middlename" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PassportSerial" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PassportNumber" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsDelete" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Car" Relationship="Self.FK_Car_Drivers" FromRole="Drivers" ToRole="Car" />
+          <NavigationProperty Name="Contact" Relationship="Self.FK_Contact_Drivers" FromRole="Drivers" ToRole="Contact" />
+          <NavigationProperty Name="DriverLicense" Relationship="Self.FK_DriverLicense_Drivers" FromRole="Drivers" ToRole="DriverLicense" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_Job_Drivers" FromRole="Drivers" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverGUID" Type="Int32" Nullable="false" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="JobName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Drivers" Relationship="Self.FK_Job_Drivers" FromRole="Job" ToRole="Drivers" />
+        </EntityType>
+        <EntityType Name="Manufacter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CarModel" Relationship="Self.FK_CarModel_Manufacter1" FromRole="Manufacter" ToRole="CarModel" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Auth" Relationship="Self.FK_Auth_Roles" FromRole="Roles" ToRole="Auth" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DriverLicense" Relationship="Self.FK_DriverLicense_Status" FromRole="Status" ToRole="DriverLicense" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TypeOfDrive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriveName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TypeOfDriveOfCar" Relationship="Self.FK_TypeOfDriveOfCar_TypeOfDrive" FromRole="TypeOfDrive" ToRole="TypeOfDriveOfCar" />
+        </EntityType>
+        <EntityType Name="TypeOfDriveOfCar">
+          <Key>
+            <PropertyRef Name="CarSpecId" />
+            <PropertyRef Name="TypeOfDriveId" />
+          </Key>
+          <Property Name="CarSpecId" Type="Int32" Nullable="false" />
+          <Property Name="TypeOfDriveId" Type="Int32" Nullable="false" />
+          <Property Name="Nothing" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="CarSpecification" Relationship="Self.FK_TypeOfDriveOfCar_CarSpecification" FromRole="TypeOfDriveOfCar" ToRole="CarSpecification" />
+          <NavigationProperty Name="TypeOfDrive" Relationship="Self.FK_TypeOfDriveOfCar_TypeOfDrive" FromRole="TypeOfDriveOfCar" ToRole="TypeOfDrive" />
+        </EntityType>
+        <Association Name="FK_Auth_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Auth" Type="Self.Auth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_Drivers">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="DriverGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarModel_Car">
+          <End Role="Car" Type="Self.Car" Multiplicity="1" />
+          <End Role="CarModel" Type="Self.CarModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarModel">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarModel_Manufacter1">
+          <End Role="Manufacter" Type="Self.Manufacter" Multiplicity="1" />
+          <End Role="CarModel" Type="Self.CarModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarModel">
+              <PropertyRef Name="ManufacterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarSpecification_CarModel">
+          <End Role="CarModel" Type="Self.CarModel" Multiplicity="1" />
+          <End Role="CarSpecification" Type="Self.CarSpecification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarModel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarSpecification">
+              <PropertyRef Name="ModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfDriveOfCar_CarSpecification">
+          <End Role="CarSpecification" Type="Self.CarSpecification" Multiplicity="1" />
+          <End Role="TypeOfDriveOfCar" Type="Self.TypeOfDriveOfCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarSpecification">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TypeOfDriveOfCar">
+              <PropertyRef Name="CarSpecId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryOfLicense_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="CategoryOfLicense" Type="Self.CategoryOfLicense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryOfLicense">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryOfLicense_DriverLicense">
+          <End Role="DriverLicense" Type="Self.DriverLicense" Multiplicity="1" />
+          <End Role="CategoryOfLicense" Type="Self.CategoryOfLicense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DriverLicense">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryOfLicense">
+              <PropertyRef Name="LicenseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_Drivers">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="DriverGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DriverLicense_Drivers">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="DriverLicense" Type="Self.DriverLicense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="DriverLicense">
+              <PropertyRef Name="DriverGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DriverLicense_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="DriverLicense" Type="Self.DriverLicense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DriverLicense">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_Drivers">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="DriverGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfDriveOfCar_TypeOfDrive">
+          <End Role="TypeOfDrive" Type="Self.TypeOfDrive" Multiplicity="1" />
+          <End Role="TypeOfDriveOfCar" Type="Self.TypeOfDriveOfCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfDrive">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TypeOfDriveOfCar">
+              <PropertyRef Name="TypeOfDriveId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GIBDDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Auth" EntityType="Self.Auth" />
+          <EntitySet Name="Car" EntityType="Self.Car" />
+          <EntitySet Name="CarModel" EntityType="Self.CarModel" />
+          <EntitySet Name="CarSpecification" EntityType="Self.CarSpecification" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="CategoryOfLicense" EntityType="Self.CategoryOfLicense" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" />
+          <EntitySet Name="DriverLicense" EntityType="Self.DriverLicense" />
+          <EntitySet Name="Drivers" EntityType="Self.Drivers" />
+          <EntitySet Name="Job" EntityType="Self.Job" />
+          <EntitySet Name="Manufacter" EntityType="Self.Manufacter" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TypeOfDrive" EntityType="Self.TypeOfDrive" />
+          <EntitySet Name="TypeOfDriveOfCar" EntityType="Self.TypeOfDriveOfCar" />
+          <AssociationSet Name="FK_Auth_Roles" Association="Self.FK_Auth_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Auth" EntitySet="Auth" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_Drivers" Association="Self.FK_Car_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarModel_Car" Association="Self.FK_CarModel_Car">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="CarModel" EntitySet="CarModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarModel_Manufacter1" Association="Self.FK_CarModel_Manufacter1">
+            <End Role="Manufacter" EntitySet="Manufacter" />
+            <End Role="CarModel" EntitySet="CarModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarSpecification_CarModel" Association="Self.FK_CarSpecification_CarModel">
+            <End Role="CarModel" EntitySet="CarModel" />
+            <End Role="CarSpecification" EntitySet="CarSpecification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfDriveOfCar_CarSpecification" Association="Self.FK_TypeOfDriveOfCar_CarSpecification">
+            <End Role="CarSpecification" EntitySet="CarSpecification" />
+            <End Role="TypeOfDriveOfCar" EntitySet="TypeOfDriveOfCar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryOfLicense_Category" Association="Self.FK_CategoryOfLicense_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="CategoryOfLicense" EntitySet="CategoryOfLicense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryOfLicense_DriverLicense" Association="Self.FK_CategoryOfLicense_DriverLicense">
+            <End Role="DriverLicense" EntitySet="DriverLicense" />
+            <End Role="CategoryOfLicense" EntitySet="CategoryOfLicense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_Drivers" Association="Self.FK_Contact_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DriverLicense_Drivers" Association="Self.FK_DriverLicense_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="DriverLicense" EntitySet="DriverLicense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DriverLicense_Status" Association="Self.FK_DriverLicense_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="DriverLicense" EntitySet="DriverLicense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_Drivers" Association="Self.FK_Job_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfDriveOfCar_TypeOfDrive" Association="Self.FK_TypeOfDriveOfCar_TypeOfDrive">
+            <End Role="TypeOfDrive" EntitySet="TypeOfDrive" />
+            <End Role="TypeOfDriveOfCar" EntitySet="TypeOfDriveOfCar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище GIBDDModelContainer" CdmEntityContainer="GIBDDEntities">
+          <EntitySetMapping Name="Auth">
+            <EntityTypeMapping TypeName="GIBDDModel.Auth">
+              <MappingFragment StoreEntitySet="Auth">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Car">
+            <EntityTypeMapping TypeName="GIBDDModel.Car">
+              <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DriverGUID" ColumnName="DriverGUID" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarModel">
+            <EntityTypeMapping TypeName="GIBDDModel.CarModel">
+              <MappingFragment StoreEntitySet="CarModel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="ManufacterId" ColumnName="ManufacterId" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarSpecification">
+            <EntityTypeMapping TypeName="GIBDDModel.CarSpecification">
+              <MappingFragment StoreEntitySet="CarSpecification">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="EngineType" ColumnName="EngineType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="GIBDDModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Categories" ColumnName="Categories" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryOfLicense">
+            <EntityTypeMapping TypeName="GIBDDModel.CategoryOfLicense">
+              <MappingFragment StoreEntitySet="CategoryOfLicense">
+                <ScalarProperty Name="LicenseId" ColumnName="LicenseId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Nothing" ColumnName="Nothing" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contact">
+            <EntityTypeMapping TypeName="GIBDDModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DriverGUID" ColumnName="DriverGUID" />
+                <ScalarProperty Name="AddressStreet" ColumnName="AddressStreet" />
+                <ScalarProperty Name="AdressCity" ColumnName="AdressCity" />
+                <ScalarProperty Name="AdressLifeStreet" ColumnName="AdressLifeStreet" />
+                <ScalarProperty Name="AdressLifeCity" ColumnName="AdressLifeCity" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DriverLicense">
+            <EntityTypeMapping TypeName="GIBDDModel.DriverLicense">
+              <MappingFragment StoreEntitySet="DriverLicense">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DriverGUID" ColumnName="DriverGUID" />
+                <ScalarProperty Name="LicenseDate" ColumnName="LicenseDate" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="LicenseSeries" ColumnName="LicenseSeries" />
+                <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drivers">
+            <EntityTypeMapping TypeName="GIBDDModel.Drivers">
+              <MappingFragment StoreEntitySet="Drivers">
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Middlename" ColumnName="Middlename" />
+                <ScalarProperty Name="PassportSerial" ColumnName="PassportSerial" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Job">
+            <EntityTypeMapping TypeName="GIBDDModel.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DriverGUID" ColumnName="DriverGUID" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="JobName" ColumnName="JobName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manufacter">
+            <EntityTypeMapping TypeName="GIBDDModel.Manufacter">
+              <MappingFragment StoreEntitySet="Manufacter">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="GIBDDModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="GIBDDModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="GIBDDModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfDrive">
+            <EntityTypeMapping TypeName="GIBDDModel.TypeOfDrive">
+              <MappingFragment StoreEntitySet="TypeOfDrive">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DriveName" ColumnName="DriveName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfDriveOfCar">
+            <EntityTypeMapping TypeName="GIBDDModel.TypeOfDriveOfCar">
+              <MappingFragment StoreEntitySet="TypeOfDriveOfCar">
+                <ScalarProperty Name="CarSpecId" ColumnName="CarSpecId" />
+                <ScalarProperty Name="TypeOfDriveId" ColumnName="TypeOfDriveId" />
+                <ScalarProperty Name="Nothing" ColumnName="Nothing" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

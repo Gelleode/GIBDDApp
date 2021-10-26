@@ -1,0 +1,60 @@
+﻿<Page x:Class="GIBDDApp.DriversPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GIBDDApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DriversPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Результат отсутсвует" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1"></TextBlock>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <TextBlock Text="Имя водителя:  " FontSize="20"/>
+            <TextBox Width="200" Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"/>
+        </StackPanel>
+        <ListView MouseDoubleClick="LViewDrivers_MouseDoubleClick" Grid.Row="1" Name="LViewDrivers" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="20" Width="400">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="250"></RowDefinition>
+                            <RowDefinition Height="70"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock Name="StringImage" Visibility="Collapsed" Text="{Binding Photo, StringFormat=Resources/{0}}"/>
+                        <Image Source="{Binding Text, ElementName=StringImage, StringFormat=.//{0}}"/>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
+                            <TextBlock FontSize="22">
+                                <Run Text="{Binding Surname}"/>
+                                <Run Text="{Binding Name}"/>
+                                <Run Text="{Binding Middlename}"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Delete" FontSize="20" Name="BtnDelete" Click="BtnDelete_Click"/>
+            <Button Content="Create excel" FontSize="20" Name="BtnExcel" Click="BtnExcel_Click"/>
+            <Button Content="Archive" FontSize="20" Name="BtnArchive" Click="BtnArchive_Click" Grid.ColumnSpan="2"/>
+            <Button Content="Back to Drivers" FontSize="20" Name="BtnBackToDrivers" Click="BtnBackToDrivers_Click" Grid.ColumnSpan="2"/>
+        </Grid>
+    </Grid>
+</Page>
