@@ -32,7 +32,7 @@ namespace GIBDDApp
             BtnExcel.Visibility = Visibility.Hidden;
         }
 
-        private void UpdateDrivers()
+        public void UpdateDrivers()
         {
             var currentDrivers = GIBDDEntities.GetContext.Drivers.Where(p => p.IsDelete == _status).ToList();
 
@@ -151,6 +151,11 @@ namespace GIBDDApp
             {
                 MessageBox.Show(ex.Message.ToString(), "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void BtnNew_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new DriverPage(null));
         }
     }
 }

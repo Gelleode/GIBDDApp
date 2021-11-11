@@ -9,5 +9,26 @@
             <Setter Property="Width" Value="170"></Setter>
             <Setter Property="Height" Value="30"></Setter>
         </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="19"></Setter>
+            <Style.Triggers>
+                <Trigger Property="Text" Value="Active">
+                    <Setter Property="Foreground" Value="Green"/>
+                </Trigger>
+                <Trigger Property="Text" Value="Paused">
+                    <Setter Property="Foreground" Value="Red"/>
+                </Trigger>
+                <Trigger Property="Text" Value="Expire">
+                    <Setter Property="Foreground" Value="Gray"/>
+                </Trigger>
+                <Trigger Property="Text" Value="Withdrawn">
+                    <Setter Property="Foreground" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="19"></Setter>
+        </Style>
+        
     </Application.Resources>
 </Application>

@@ -55,6 +55,7 @@
             <Button Content="Create excel" FontSize="20" Name="BtnExcel" Click="BtnExcel_Click"/>
             <Button Content="Archive" FontSize="20" Name="BtnArchive" Click="BtnArchive_Click" Grid.ColumnSpan="2"/>
             <Button Content="Back to Drivers" FontSize="20" Name="BtnBackToDrivers" Click="BtnBackToDrivers_Click" Grid.ColumnSpan="2"/>
+            <Button Content="New" FontSize="20" Name="BtnNew" Click="BtnNew_Click" Grid.Column="3"/>
         </Grid>
     </Grid>
 </Page>

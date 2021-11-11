@@ -101,6 +101,7 @@
     <Compile Include="Contact.cs">
       <DependentUpon>BaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DriverData.cs" />
     <Compile Include="DriverLicense.cs">
       <DependentUpon>BaseModel.tt</DependentUpon>
     </Compile>

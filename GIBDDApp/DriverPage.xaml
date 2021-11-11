@@ -11,62 +11,97 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Name="StringImage" Visibility="Collapsed" Text="{Binding Photo, Mode=OneWay, StringFormat=Resources/{0}}"/>
-        <Image Grid.RowSpan="20" Source="{Binding Text, Mode=OneWay, ElementName=StringImage, StringFormat=.//{0}}"/>
-        <TextBlock Grid.Row="2" Grid.Column="1" FontSize="20">
-            <Run Text="{Binding Surname, Mode=OneWay}"/>
-            <Run Text="{Binding Name, Mode=OneWay}"/>
-            <Run Text="{Binding Middlename, Mode=OneWay}"/>
-        </TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="1" FontSize="20">
-            Passport: 
-            <Run Text="{Binding PassportSerial, Mode=OneWay}"/>
-            <Run Text="{Binding PassportNumber, Mode=OneWay}"/>
-        </TextBlock>
-        <TextBlock Grid.Row="4" Grid.Column="1" Text="Driver License: " FontSize="20"/>
-        <StackPanel Grid.Row="5" Grid.Column="1">
-            <StackPanel>
-                <TextBlock FontSize="20">
-                Starting date:
-                <Run Text="{Binding LicenseDate, Mode=OneWay}"/>
-                <Run Text="      Ending Date:"/>
-                <Run Text="{Binding ExpireDate, Mode=OneWay}"/>
-                </TextBlock>
-            </StackPanel>
-            <StackPanel>
-                <TextBlock FontSize="20">
-                License Series and Number:
-                <Run Text="{Binding LicenseSeries, Mode=OneWay}"/>
-                <Run Text="{Binding LicenseNumber, Mode=OneWay}"/>
-                </TextBlock>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel Grid.Row="6" Grid.Column="1">
+        <Image Grid.RowSpan="20" Source="{Binding Text, ElementName=StringImage, StringFormat=.//{0}}"/>
+        <StackPanel Grid.Row="2" Grid.Column="2">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="City: " FontSize="20"/>
-                <TextBlock Text="{Binding AdressCity}" FontSize="20"/>
+                <TextBlock Text="Surname: "/>
+                <TextBox Text="{Binding Surname}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="House and street: " FontSize="20"/>
-                <TextBlock Text="{Binding AdressStreet}" FontSize="20"/>
+                <TextBlock Text="Name: "/>
+                <TextBox Text="{Binding Name}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Middlename: "/>
+                <TextBox Text="{Binding Middlename}"/>
             </StackPanel>
         </StackPanel>
-        
-        
-        
+        <StackPanel Grid.Row="3" Grid.Column="2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Passport number: "/>
+                <TextBox Text="{Binding PassportNumber}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Passport Serial: "/>
+                <TextBox Text="{Binding PassportSerial}"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.RowSpan ="3" Grid.Row="4" Grid.Column="2">
+            <TextBlock Text="Driver License: "/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="License Series: "/>
+                <TextBox Text="{Binding LicenseSeries}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="License Number: "/>
+                <TextBox Text="{Binding LicenseNumber}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="License Start Date: "/>
+                <DatePicker SelectedDate="{Binding Path=LicenseDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="License Expire Date: "/>
+                <DatePicker SelectedDate="{Binding Path=ExpireDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+            </StackPanel>
+            <ComboBox Name="ComboStatus" SelectedIndex="{Binding StatusId}" DisplayMemberPath="Name" Width="120" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <StackPanel Grid.Row="6" Grid.Column="2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="City: "/>
+                <TextBox Text="{Binding AdressCity}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="House and street: "/>
+                <TextBox Text="{Binding AdressStreet}"/>
+            </StackPanel>
+        </StackPanel>
+         <StackPanel Grid.Row="7" Grid.Column="2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Company: "/>
+                <TextBox Text="{Binding Company}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Job: "/>
+                <TextBox Text="{Binding JobName}"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="8" Grid.Column="2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Phone Number: "/>
+                <TextBox Text="{Binding PhoneNumber}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Email: "/>
+                <TextBox Text="{Binding Email}"/>
+            </StackPanel>
+        </StackPanel>
+        <Button x:Name="SaveBtn" Content="Save" Click="SaveBtn_Click" Grid.ColumnSpan="3" Grid.Row="9"/>
     </Grid>
 </Page>
