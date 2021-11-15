@@ -53,7 +53,7 @@ namespace GIBDDApp
 
         private void LViewDrivers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Manager.MainFrame.Navigate(new DriverPage(LViewDrivers.SelectedItem as Drivers));
+            Manager.MainFrame.Navigate(new ReadDriverPage(LViewDrivers.SelectedItem as Drivers));
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)

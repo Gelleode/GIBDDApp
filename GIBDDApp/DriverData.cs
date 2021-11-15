@@ -38,5 +38,7 @@ namespace GIBDDApp
             }
             get { return statusId; }
         }
+        public string StatusName { get; set; }
+        public string IsDelete { get; set; }
     }
 }

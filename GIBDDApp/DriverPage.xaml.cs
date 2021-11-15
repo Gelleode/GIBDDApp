@@ -53,6 +53,7 @@ namespace GIBDDApp
                                       Company = j.Company,
                                       JobName = j.JobName,
                                       StatusId = dl.StatusId,
+                                      IsDelete = d.IsDelete,
                                       AdressStreet = c.AddressStreet,
                                   }).Where(p => p.GUID.Equals(selectedDriver.GUID)).FirstOrDefault();
             }
@@ -64,29 +65,42 @@ namespace GIBDDApp
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!(_currentDriver.GUID == 0))
-            { 
-                var currentDriver = GIBDDEntities.GetContext.Drivers.Where(c => c.GUID == _currentDriver.GUID).FirstOrDefault();
-                currentDriver.Surname = _currentDriver.Surname;
-                currentDriver.Name = _currentDriver.Name;
-                currentDriver.Middlename = _currentDriver.Middlename;
-                currentDriver.PassportSerial = _currentDriver.PassportSerial;
-                currentDriver.PassportNumber = _currentDriver.PassportNumber;
-                currentDriver.Photo = _currentDriver.Photo;
-                currentDriver.DriverLicense.Where(p => p.DriverGUID == _currentDriver.GUID).FirstOrDefault().LicenseDate = _currentDriver.LicenseDate;
-                currentDriver.DriverLicense.Where(p => p.DriverGUID == _currentDriver.GUID).FirstOrDefault().ExpireDate = _currentDriver.ExpireDate;
-                currentDriver.DriverLicense.Where(p => p.DriverGUID == _currentDriver.GUID).FirstOrDefault().LicenseSeries = _currentDriver.LicenseSeries;
-                currentDriver.DriverLicense.Where(p => p.DriverGUID == _currentDriver.GUID).FirstOrDefault().LicenseNumber = _currentDriver.LicenseNumber;
-                currentDriver.DriverLicense.Where(p => p.DriverGUID == _currentDriver.GUID).FirstOrDefault().StatusId = ComboStatus.SelectedIndex + 1;
-                currentDriver.Contact.Where(p => p.DriverGUID == _currentDriver.GUID).FirstOrDefault().AdressCity = _currentDriver.AdressCity;
-                currentDriver.Contact.Where(p => p.DriverGUID == _currentDriver.GUID).FirstOrDefault().AddressStreet = _currentDriver.AdressStreet;
-                currentDriver.Contact.Where(p => p.DriverGUID == _currentDriver.GUID).FirstOrDefault().PhoneNumber = _currentDriver.PhoneNumber;
-                currentDriver.Contact.Where(p => p.DriverGUID == _currentDriver.GUID).FirstOrDefault().Email = _currentDriver.Email;
-                currentDriver.Job.Where(p => p.DriverGUID == _currentDriver.GUID).FirstOrDefault().Company = _currentDriver.Company;
-                currentDriver.Job.Where(p => p.DriverGUID == _currentDriver.GUID).FirstOrDefault().JobName = _currentDriver.JobName;
+            {
+                var currentDriver = new Drivers
+                {
+                    GUID = _currentDriver.GUID,
+                    Surname = _currentDriver.Surname,
+                    Name = _currentDriver.Name,
+                    Middlename = _currentDriver.Middlename,
+                    PassportSerial = _currentDriver.PassportSerial,
+                    PassportNumber = _currentDriver.PassportNumber,
+                    Photo = _currentDriver.Photo,
+                    Description = _currentDriver.Description,
+                    IsDelete = _currentDriver.IsDelete,
+                    //Contact =
+                    //{
+                    //    DriverGUID = _currentDriver.GUID
+                    //}
+
+
+                };
+
             }
 
             if (_currentDriver.GUID == 0)
             {
+
+                //var author = new Author
+                //{
+                //    FirstName = "William",
+                //    LastName = "Shakespeare",
+                //    Books = new List<Book>
+                //    {
+                //        new Book { Title = "Hamlet" },
+                //        new Book { Title = "Othello" },
+                //        new Book { Title = "MacBeth" }
+                //    }
+                //};
                 Drivers currentDriver = new Drivers();
                 currentDriver.Surname = _currentDriver.Surname;
                 currentDriver.Name = _currentDriver.Name;
@@ -102,14 +116,22 @@ namespace GIBDDApp
                 currentDriverLicense.LicenseNumber = _currentDriver.LicenseNumber;
                 currentDriverLicense.StatusId = ComboStatus.SelectedIndex + 1;
 
-
                 // https://www.learnentityframeworkcore.com/dbcontext/adding-data
-                // ПРОЧИТАЙ ДЕБИЛ А ТО ЗАБУДЕШЬ ОПЯТЬ КАК ЭТО СДЕЛАТЬ 
+                // ПРОЧИТАЙ ДЕБИЛ А ТО ЗАБУДЕШЬ ОПЯТЬ КАК ЭТО СДЕЛАТЬ И НЕ СДЕЛАЕШЬ НИЧЕРТА
                 // Запись с 11.11.21 на 12.11.21
 
                 GIBDDEntities.GetContext.Drivers.Add(currentDriver);
             }
-            GIBDDEntities.GetContext.SaveChanges();
+            try
+            {
+                GIBDDEntities.GetContext.SaveChanges();
+                MessageBox.Show("Data saved");
+                Manager.MainFrame.GoBack();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
     }

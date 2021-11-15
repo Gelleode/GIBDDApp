@@ -31,36 +31,36 @@
         <StackPanel Grid.Row="2" Grid.Column="2">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Surname: "/>
-                <TextBox Text="{Binding Surname}"/>
+                <TextBox Text="{Binding Surname}" Width="200"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Name: "/>
-                <TextBox Text="{Binding Name}"/>
+                <TextBox Text="{Binding Name}" Width="200"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Middlename: "/>
-                <TextBox Text="{Binding Middlename}"/>
+                <TextBox Text="{Binding Middlename}" Width="200"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="2">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Passport number: "/>
-                <TextBox Text="{Binding PassportNumber}"/>
+                <TextBox Text="{Binding PassportNumber}" Width="200"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Passport Serial: "/>
-                <TextBox Text="{Binding PassportSerial}"/>
+                <TextBox Text="{Binding PassportSerial}" Width="200"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.RowSpan ="3" Grid.Row="4" Grid.Column="2">
             <TextBlock Text="Driver License: "/>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="License Series: "/>
-                <TextBox Text="{Binding LicenseSeries}"/>
+                <TextBox Text="{Binding LicenseSeries}" Width="200"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="License Number: "/>
-                <TextBox Text="{Binding LicenseNumber}"/>
+                <TextBox Text="{Binding LicenseNumber}" Width="200"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="License Start Date: "/>
@@ -75,31 +75,31 @@
         <StackPanel Grid.Row="6" Grid.Column="2">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="City: "/>
-                <TextBox Text="{Binding AdressCity}"/>
+                <TextBox Text="{Binding AdressCity}" Width="200"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="House and street: "/>
-                <TextBox Text="{Binding AdressStreet}"/>
+                <TextBox Text="{Binding AdressStreet}" Width="200"/>
             </StackPanel>
         </StackPanel>
-         <StackPanel Grid.Row="7" Grid.Column="2">
+        <StackPanel Grid.Row="7" Grid.Column="2">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Company: "/>
                 <TextBox Text="{Binding Company}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Job: "/>
-                <TextBox Text="{Binding JobName}"/>
+                <TextBox Text="{Binding JobName}" Width="200"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="8" Grid.Column="2">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Phone Number: "/>
-                <TextBox Text="{Binding PhoneNumber}"/>
+                <TextBox Text="{Binding PhoneNumber}" Width="200"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Email: "/>
-                <TextBox Text="{Binding Email}"/>
+                <TextBox Text="{Binding Email}" Width="200"/>
             </StackPanel>
         </StackPanel>
         <Button x:Name="SaveBtn" Content="Save" Click="SaveBtn_Click" Grid.ColumnSpan="3" Grid.Row="9"/>
